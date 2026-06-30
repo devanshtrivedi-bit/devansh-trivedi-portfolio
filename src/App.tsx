@@ -49,6 +49,22 @@ function App() {
   const [isDragging, setIsDragging] = useState(false);
   const [isAdjustMode, setIsAdjustMode] = useState(false);
   const [frameHovered, setFrameHovered] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(() => {
+    return localStorage.getItem('isAdmin') === 'true';
+  });
+
+  // Admin secret URL entry trigger (URL/?admin=true)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('admin') === 'true') {
+      setIsAdmin(true);
+      localStorage.setItem('isAdmin', 'true');
+      // Clean up URL parameter silently
+      const url = new URL(window.location.href);
+      url.searchParams.delete('admin');
+      window.history.replaceState({}, '', url.pathname + url.search);
+    }
+  }, []);
   
   const fileInputRef = useRef(null);
   const audioRef = useRef(null);
@@ -415,8 +431,8 @@ function App() {
                       onError={() => setProfilePicError(true)}
                     />
                     
-                    {/* Header Controls - Camera & Move (Only visible on hover outside adjust mode) */}
-                    {!isAdjustMode && (
+                    {/* Header Controls - Camera & Move (Only visible on hover outside adjust mode for Admin only) */}
+                    {!isAdjustMode && isAdmin && (
                       <div style={{ display: 'flex', gap: '8px', position: 'absolute', top: '15px', left: '15px', zIndex: 10 }}>
                         <button 
                           onClick={(e) => {
@@ -519,15 +535,17 @@ function App() {
                   </>
                 ) : (
                   <div 
-                    onClick={() => fileInputRef.current && fileInputRef.current.click()}
+                    onClick={() => isAdmin && fileInputRef.current && fileInputRef.current.click()}
                     style={{ 
                       position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', 
                       justifyContent: 'center', alignItems: 'center', color: 'rgba(255,255,255,0.5)', 
-                      cursor: 'pointer', background: 'rgba(255,255,255,0.01)', zIndex: 6, gap: '10px' 
+                      cursor: isAdmin ? 'pointer' : 'default', background: 'rgba(255,255,255,0.01)', zIndex: 6, gap: '10px' 
                     }}
                   >
                     <User size={48} style={{ opacity: 0.5 }} />
-                    <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Click to Upload Photo</span>
+                    <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                      {isAdmin ? "Click to Upload Photo" : "No Profile Image"}
+                    </span>
                   </div>
                 )}
 
