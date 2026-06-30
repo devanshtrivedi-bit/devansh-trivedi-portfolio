@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #05050f;
+  --bg-secondary: #0a0a1a;
+  
+  /* 3D Game / Glassmorphism palette */
+  --glass-bg: rgba(15, 20, 35, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-highlight: rgba(255, 255, 255, 0.3);
+  
+  --accent-blue: #00d2ff;
+  --accent-purple: #9d00ff;
+  --accent-pink: #ff0077;
+  
+  --text-main: #ffffff;
+  --text-muted: #a0a5c0;
+  
+  --font-game: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Custom Futuristic Cursor */
+  cursor: crosshair;
+}
+
+/* Custom Cursor targeting specific elements */
+a, button, .game-button, input, [role="button"] {
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-game);
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple));
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--accent-purple), var(--accent-pink));
+}
+
+/* 3D Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+}
+
+/* Elegant Glass Button (replaces game-button) */
+.game-button {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.game-button:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2), 0 0 15px rgba(255, 255, 255, 0.05);
+}
+
+.game-button.active {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), inset 0 2px 5px rgba(255,255,255,0.05);
+  font-weight: 500;
+}
+
+/* 3D Floating Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotateX(0) rotateY(0); }
+  50% { transform: translateY(-10px) rotateX(2deg) rotateY(-2deg); }
+  100% { transform: translateY(0px) rotateX(0) rotateY(0); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Glowing text for game style */
+.text-glow {
+  text-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--accent-blue), #ffffff, var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Background Ambient Glow */
+.ambient-glow {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 30% 30%, rgba(157,0,255,0.15) 0%, transparent 40%),
+              radial-gradient(circle at 70% 70%, rgba(0,210,255,0.1) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* App Grid Layout for Game UI */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.hud-sidebar {
+  width: 320px;
+  height: calc(100vh - 40px);
+  margin: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+}
+
+@media (max-width: 1024px) {
+  .app-container {
+    flex-direction: column;
+  }
+  .hud-sidebar {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 20px;
+    border-radius: 0;
+    border-bottom: 1px solid var(--glass-border);
+  }
+}
+
+.hud-content {
+  flex-grow: 1;
+  padding: 30px;
+  padding-bottom: 80px;
+  overflow-y: auto;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  scroll-behavior: smooth;
+}
+
+/* Loading Screen Spinner */
+.loader-spinner {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: var(--accent-blue);
+  border-right-color: var(--accent-purple);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Typography Overrides */
+p {
+  line-height: 1.7;
+  color: var(--text-muted);
+}
