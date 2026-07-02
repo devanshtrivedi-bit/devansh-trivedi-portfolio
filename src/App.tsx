@@ -37,7 +37,7 @@ function App() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [profilePicError, setProfilePicError] = useState(false);
   const [profilePic, setProfilePic] = useState(() => {
-    return localStorage.getItem('profilePic') || '/profile.jpg';
+    return localStorage.getItem('profilePic') || '/profile.jpeg';
   });
   const [profilePicZoom, setProfilePicZoom] = useState(() => {
     return Number(localStorage.getItem('profilePicZoom')) || 1;
