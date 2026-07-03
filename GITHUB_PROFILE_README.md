@@ -1,4 +1,4 @@
-﻿<h1 align="center">Hi 👋, I'm Devansh Trivedi</h1>
+<h1 align="center">Hi 👋, I'm Devansh Trivedi</h1>
 <h3 align="center">AI & Robotics Developer</h3>
 <div align="center">
   <img src="./header.svg" alt="Devansh Trivedi Banner" width="100%" />
@@ -146,6 +146,17 @@
   </a>
   <a href="https://github.com/devanshtrivedi-bit/Github-cheatsheet">
     <img src="https://github-readme-stats.shion.dev/api/pin/?username=devanshtrivedi-bit&repo=Github-cheatsheet&theme=radical" alt="GitHub Cheatsheet" />
+  </a>
+</div>
+<br/>
+<div align="center">
+  <a href="https://github.com/devanshtrivedi-bit/glassmorphism-calculator">
+    <img src="https://github-readme-stats.shion.dev/api/pin/?username=devanshtrivedi-bit&repo=glassmorphism-calculator&theme=radical" alt="Glassmorphism Calculator" />
+  </a>
+  <br/>
+  <br/>
+  <a href="https://raw.githack.com/devanshtrivedi-bit/glassmorphism-calculator/main/index.html" target="_blank">
+    <img src="https://img.shields.io/badge/🚀_Live_Demo-Play_Now!-007BFF?style=for-the-badge" alt="Live Demo" />
   </a>
 </div>
 <hr/>
